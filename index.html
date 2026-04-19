@@ -1,9 +1,558 @@
-q[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[user]
-	name = zainsadiqchess-pixel
-	email = 237865857+zainsadiq-club@users.noreply.github.com
-  
+
+Copy
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ISPC Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root { --accent:#2e565e; --accent2:#ff6b6b; --accent-rgb:108,99,255; }
+    [data-theme="light"] { --bg:#f7f7fb; --bg2:#ffffff; --bg3:#ededf5; --text:#12121e; --text2:#5a5a7a; --border:rgba(0,0,0,0.07); --nav-bg:rgba(247,247,251,0.9); --shadow:0 4px 20px rgba(0,0,0,0.07); --shadow-lg:0 12px 48px rgba(0,0,0,0.12); }
+    [data-theme="dark"] { --bg:#0d0d18; --bg2:#14142a; --bg3:#1c1c30; --text:#eeeef8; --text2:#8888aa; --border:rgba(255,255,255,0.07); --nav-bg:rgba(13,13,24,0.92); --shadow:0 4px 20px rgba(0,0,0,0.3); --shadow-lg:0 12px 48px rgba(0,0,0,0.5); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;overflow-x:hidden;}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;}
+    a{text-decoration:none;color:inherit;}
+    section,.section{padding:96px 0;}
+    .container{max-width:1100px;margin:0 auto;padding:0 24px;}
+    #particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:66px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-left{display:flex;align-items:center;gap:10px;}
+    .nav-logo{width:36px;height:36px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:15px;}
+    .nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{padding:7px 15px;border-radius:8px;font-size:14px;font-weight:500;color:var(--text2);transition:all .2s;}
+    .nav-links a:hover{background:var(--bg3);color:var(--text);}
+    .nav-right{display:flex;align-items:center;gap:8px;}
+    .icon-btn{width:36px;height:36px;border-radius:9px;border:none;cursor:pointer;background:var(--bg3);color:var(--text2);font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+    .icon-btn:hover{background:var(--accent);color:#fff;}
+    .btn-join-nav{padding:8px 20px;border-radius:9px;border:none;cursor:pointer;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;transition:all .2s;box-shadow:0 4px 16px rgba(var(--accent-rgb),.35);}
+    .btn-join-nav:hover{filter:brightness(1.1);transform:translateY(-1px);}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-nav{display:none;position:fixed;top:66px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 16px 20px;z-index:99;box-shadow:var(--shadow-lg);}
+    .mobile-nav.open{display:block;}
+    .mobile-nav a{display:block;padding:11px 14px;border-radius:9px;font-weight:500;color:var(--text2);transition:all .2s;margin-bottom:2px;}
+    .mobile-nav a:hover{background:var(--bg3);color:var(--text);}
+    .mobile-nav .btn-join-nav{display:block;text-align:center;margin-top:10px;width:100%;}
+    .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:149;backdrop-filter:blur(3px);}
+    .sidebar-overlay.show{display:block;}
+    .sidebar{position:fixed;top:0;right:0;bottom:0;width:270px;background:var(--bg2);border-left:1px solid var(--border);box-shadow:var(--shadow-lg);z-index:150;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;}
+    .sidebar.open{transform:translateX(0);}
+    .sb-head{display:flex;align-items:center;justify-content:space-between;padding:20px;border-bottom:1px solid var(--border);}
+    .sb-title{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--accent);}
+    .sb-close{background:none;border:none;cursor:pointer;color:var(--text2);font-size:18px;}
+    .sb-body{flex:1;overflow-y:auto;padding:16px 12px;}
+    .sb-section{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);padding:10px 10px 6px;}
+    .sb-link{display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:9px;font-size:14px;font-weight:500;color:var(--text2);transition:all .2s;margin-bottom:2px;}
+    .sb-link i{width:16px;text-align:center;font-size:13px;}
+    .sb-link:hover{background:var(--accent);color:#fff;}
+    .sb-foot{padding:16px 20px;border-top:1px solid var(--border);font-size:12px;color:var(--text2);}
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;padding:100px 24px 60px;}
+    .hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(var(--accent-rgb),.1);color:var(--accent);border:1px solid rgba(var(--accent-rgb),.25);padding:5px 16px;border-radius:40px;font-size:13px;font-weight:600;margin-bottom:28px;}
+    .hero-logo{width:90px;height:90px;border-radius:22px;background:rgba(var(--accent-rgb),.12);display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 28px;}
+    .hero-title{font-size:clamp(40px,7vw,84px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:10px;}
+    .hero-title .accent{color:var(--accent);display:block;}
+    .typing::after{content:'|';animation:blink 1s step-end infinite;}
+    .typing.done::after{display:none;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    .hero-sub{font-size:18px;color:var(--text2);line-height:1.7;max-width:520px;margin:20px auto 40px;}
+    .hero-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+    .btn-primary{padding:13px 30px;border-radius:11px;border:none;cursor:pointer;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;transition:all .2s;box-shadow:0 6px 24px rgba(var(--accent-rgb),.4);}
+    .btn-primary:hover{filter:brightness(1.1);transform:translateY(-2px);}
+    .btn-outline{padding:12px 26px;border-radius:11px;border:1.5px solid var(--border);background:var(--bg2);color:var(--text);font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+    .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);display:flex;flex-direction:column;align-items:center;gap:8px;}
+    .mouse{width:22px;height:36px;border:2px solid var(--border);border-radius:11px;display:flex;justify-content:center;padding-top:5px;}
+    .mouse::after{content:'';width:3px;height:7px;background:var(--accent);border-radius:2px;animation:scrollDown 1.8s ease infinite;}
+    @keyframes scrollDown{0%{opacity:1;transform:translateY(0)}80%{opacity:0;transform:translateY(9px)}100%{opacity:0}}
+    .section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+    .section-title{font-size:clamp(26px,4vw,42px);font-weight:800;margin-bottom:14px;line-height:1.15;}
+    .section-sub{font-size:16px;color:var(--text2);line-height:1.75;max-width:540px;margin-bottom:52px;}
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+    .about-section{background:var(--bg2);}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+    .about-img{aspect-ratio:1;border-radius:24px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:72px;position:relative;overflow:hidden;}
+    .about-img::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(var(--accent-rgb),.15),transparent 65%);}
+    .stats-row{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap;}
+    .stat .num{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--accent);}
+    .stat .lbl{font-size:12px;color:var(--text2);margin-top:2px;}
+    .goals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    .goal-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden;}
+    .goal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transition:transform .3s;transform-origin:left;}
+    .goal-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+    .goal-card:hover::before{transform:scaleX(1);}
+    .goal-icon{width:46px;height:46px;border-radius:12px;background:rgba(var(--accent-rgb),.1);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px;}
+    .goal-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px;}
+    .goal-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+    .events-section{background:var(--bg2);}
+    .countdown-box{display:flex;justify-content:center;gap:10px;margin-bottom:52px;flex-wrap:wrap;}
+    .cd-unit{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:16px 18px;min-width:70px;text-align:center;}
+    .cd-num{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:var(--accent);line-height:1;}
+    .cd-sep{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--accent);align-self:flex-end;padding-bottom:18px;}
+    .cd-lbl{font-size:10px;color:var(--text2);margin-top:4px;text-transform:uppercase;letter-spacing:.1em;}
+    .events-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;}
+    .event-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;gap:18px;transition:all .25s;}
+    .event-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+    .event-date-box{min-width:52px;height:58px;background:var(--accent);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+    .event-date-box .day{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;line-height:1;}
+    .event-date-box .mon{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;opacity:.85;}
+    .event-name{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px;}
+    .event-meta{font-size:12px;color:var(--text2);display:flex;gap:12px;flex-wrap:wrap;}
+    .event-meta span{display:flex;align-items:center;gap:4px;}
+    .leaders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;}
+    .leader-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px 22px;text-align:center;transition:all .25s;}
+    .leader-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+    .avatar{width:68px;height:68px;border-radius:50%;background:rgba(var(--accent-rgb),.13);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--accent);}
+    .leader-card .name{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px;}
+    .leader-card .role{font-size:13px;color:var(--text2);}
+    .testimonials-section{background:var(--bg2);}
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+    .testi-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;transition:all .25s;}
+    .testi-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+    .testi-quote{font-size:40px;color:var(--accent);opacity:.25;line-height:1;margin-bottom:8px;font-family:Georgia,serif;}
+    .testi-text{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:18px;}
+    .testi-author{display:flex;align-items:center;gap:10px;}
+    .testi-av{width:36px;height:36px;border-radius:50%;background:rgba(var(--accent-rgb),.15);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:14px;}
+    .testi-info .tname{font-weight:700;font-size:13px;}
+    .testi-info .tgrade{font-size:12px;color:var(--text2);}
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .gallery-item{aspect-ratio:1;border-radius:14px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:36px;cursor:pointer;overflow:hidden;transition:all .25s;position:relative;}
+    .gallery-item:hover{transform:scale(1.03);box-shadow:var(--shadow-lg);}
+    .gallery-item .overlay{position:absolute;inset:0;background:rgba(var(--accent-rgb),.7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;opacity:0;transition:opacity .25s;}
+    .gallery-item:hover .overlay{opacity:1;}
+    .faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+    .faq-item{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+    .faq-q{width:100%;background:none;border:none;cursor:pointer;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:left;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--text);transition:background .2s;}
+    .faq-q:hover{background:var(--bg3);}
+    .faq-icon{width:26px;height:26px;border-radius:7px;background:rgba(var(--accent-rgb),.1);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:transform .3s;}
+    .faq-item.open .faq-icon{transform:rotate(45deg);}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 22px;font-size:14px;color:var(--text2);line-height:1.75;}
+    .faq-item.open .faq-a{max-height:300px;padding:0 22px 18px;}
+    .newsletter-section{background:var(--bg2);}
+    .nl-form{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap;}
+    .nl-input{flex:1;min-width:0;padding:13px 18px;border-radius:11px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
+    .nl-input:focus{border-color:var(--accent);}
+    .nl-input::placeholder{color:var(--text2);}
+    .btn-nl{padding:13px 24px;border-radius:11px;border:none;cursor:pointer;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;transition:all .2s;white-space:nowrap;}
+    .btn-nl:hover{filter:brightness(1.1);}
+    .nl-note{font-size:12px;color:var(--text2);margin-top:12px;}
+    .join-section{background:var(--accent);position:relative;overflow:hidden;}
+    .join-section::before{content:'';position:absolute;top:-40%;right:-8%;width:550px;height:550px;background:rgba(255,255,255,.06);border-radius:50%;pointer-events:none;}
+    .join-inner{text-align:center;position:relative;z-index:1;}
+    .join-inner .section-tag{color:rgba(255,255,255,.6);}
+    .join-inner .section-title{color:#fff;}
+    .join-inner .section-sub{color:rgba(255,255,255,.75);margin:0 auto 38px;}
+    .btn-white{padding:13px 34px;border-radius:11px;border:none;cursor:pointer;background:#fff;color:var(--accent);font-family:'Syne',sans-serif;font-weight:800;font-size:15px;box-shadow:0 8px 32px rgba(0,0,0,.18);transition:all .2s;}
+    .btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.25);}
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 0 32px;}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;max-width:1100px;margin:0 auto 44px;padding:0 24px;}
+    .footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:19px;margin-bottom:10px;}
+    .footer-desc{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:20px;}
+    .socials{display:flex;gap:8px;}
+    .social-btn{width:34px;height:34px;border-radius:9px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text2);transition:all .2s;}
+    .social-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+    .footer-col h4{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:14px;}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+    .footer-col ul a{font-size:13px;color:var(--text2);transition:color .2s;}
+    .footer-col ul a:hover{color:var(--accent);}
+    .footer-bottom{max-width:1100px;margin:0 auto;padding:24px 24px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--text2);}
+    .footer-links{display:flex;gap:18px;}
+    .footer-links a{color:var(--text2);transition:color .2s;}
+    .footer-links a:hover{color:var(--accent);}
+    .announcement{background:var(--accent);color:#fff;padding:10px 16px;text-align:center;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;position:relative;z-index:101;}
+    .announcement a{color:#fff;text-decoration:underline;}
+    .ann-close{position:absolute;right:16px;background:none;border:none;color:#fff;cursor:pointer;font-size:16px;opacity:.8;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:200;width:0%;transition:width .1s linear;}
+    #back-top{position:fixed;bottom:28px;right:28px;z-index:150;width:44px;height:44px;border-radius:12px;border:none;cursor:pointer;background:var(--accent);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(var(--accent-rgb),.4);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(12px);}
+    #back-top.show{opacity:1;pointer-events:all;transform:translateY(0);}
+    #back-top:hover{filter:brightness(1.1);}
+    @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}.about-grid{grid-template-columns:1fr;}.about-img{display:none;}.goals-grid{grid-template-columns:1fr 1fr;}.gallery-grid{grid-template-columns:1fr 1fr;}.footer-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){.goals-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;}.hero-btns{flex-direction:column;align-items:stretch;}.countdown-box .cd-sep{display:none;}}
+  </style>
+</head>
+<body>
+  <div id="progress-bar"></div>
+ 
+  <!-- FIX 1: Typo "everone" → "everyone" -->
+  <div class="announcement" id="announcement">
+    Eid Mubarak everyone!
+    <a href="#events">View all events</a>
+    <button class="ann-close" onclick="document.getElementById('announcement').remove()">✕</button>
+  </div>
+ 
+  <div id="particles"></div>
+  <div class="sidebar-overlay" id="sbOverlay" onclick="closeSb()"></div>
+ 
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-head">
+      <!-- FIX 2: Generic "Club Name" → "ISPC" -->
+      <span class="sb-title">ISPC</span>
+      <button class="sb-close" onclick="closeSb()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sb-body">
+      <div class="sb-section">Pages</div>
+      <a class="sb-link" href="#about" onclick="closeSb()"><i class="fas fa-info-circle"></i> About</a>
+      <a class="sb-link" href="#goals" onclick="closeSb()"><i class="fas fa-bullseye"></i> Our Goals</a>
+      <a class="sb-link" href="#events" onclick="closeSb()"><i class="fas fa-calendar"></i> Events</a>
+      <a class="sb-link" href="#leadership" onclick="closeSb()"><i class="fas fa-users"></i> Leadership</a>
+      <a class="sb-link" href="#gallery" onclick="closeSb()"><i class="fas fa-images"></i> Gallery</a>
+      <a class="sb-link" href="#faq" onclick="closeSb()"><i class="fas fa-question-circle"></i> FAQ</a>
+      <a class="sb-link" href="#join" onclick="closeSb()"><i class="fas fa-hand-paper"></i> Join Us</a>
+      <div class="sb-section">Connect</div>
+      <a class="sb-link" href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      <a class="sb-link" href="#"><i class="fab fa-youtube"></i> YouTube</a>
+      <a class="sb-link" href="mailto:email@school.org"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+    <div class="sb-foot">© Islamic Society of Placer County</div>
+  </aside>
+ 
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+        <div class="nav-logo">🕌</div>
+        <span class="nav-brand">ISPC</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#goals">Goals</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="icon-btn" onclick="toggleSb()"><i class="fas fa-bars-staggered"></i></button>
+        <button class="icon-btn" id="darkBtn" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+        <a href="#join"><button class="btn-join-nav">Join Us</button></a>
+      </div>
+    </div>
+  </nav>
+ 
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about" onclick="closeNav()">About</a>
+    <a href="#goals" onclick="closeNav()">Our Goals</a>
+    <a href="#events" onclick="closeNav()">Events</a>
+    <a href="#leadership" onclick="closeNav()">Leadership</a>
+    <a href="#gallery" onclick="closeNav()">Gallery</a>
+    <a href="#faq" onclick="closeNav()">FAQ</a>
+    <a href="#join" class="btn-join-nav" onclick="closeNav()">Join Us</a>
+  </div>
+ 
+  <section class="hero">
+    <div style="max-width:720px;margin:0 auto;">
+      <!-- FIX 3: Typo "mousqe" → "mosque" -->
+      <div class="hero-badge reveal"><i class="fas fa-star"></i>Proud mosque in Placer County</div>
+      <h1 class="hero-title">
+        <span id="heroLine1"></span>
+        <span class="accent typing" id="heroLine2"></span>
+      </h1>
+      <p class="hero-sub reveal">A safe place made for Muslims of all backgrounds.</p>
+      <div class="hero-btns reveal">
+        <a href="#join"><button class="btn-primary">Join Now <i class="fas fa-arrow-right" style="margin-left:6px"></i></button></a>
+        <a href="#about"><button class="btn-outline">Learn More</button></a>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>Scroll</span><div class="mouse"></div></div>
+  </section>
+ 
+  <!-- FIX 4: First "about" section keeps id="about" -->
+  <section id="about" class="about-section section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="section-tag reveal">About Us</div>
+          <h2 class="section-title reveal">Who we are &amp; what we stand for</h2>
+          <p class="reveal" style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:16px">Our mission is to foster a harmonious and inclusive community where every individual feels valued, respected, and supported. Guided by faith and grounded in balanced, moderate values, we strive to promote understanding, compassion, and unity while encouraging members to work together to uplift one another and contribute positively to the broader community.</p>
+          <p class="reveal" style="font-size:15px;color:var(--text2);line-height:1.8">Join us today!</p>
+          <div class="stats-row">
+            <div class="stat reveal d1"><div class="num">100+</div><div class="lbl">Members</div></div>
+            <div class="stat reveal d2"><div class="num">50+</div><div class="lbl">Events / year</div></div>
+            <div class="stat reveal d3"><div class="num">100%</div><div class="lbl">Committed to Allah</div></div>
+          </div>
+        </div>
+        <img src="Logo.png" alt="ISPC logo" width="500">
+      </div>
+    </div>
+  </section>
+ 
+  <section id="goals" class="section">
+    <div class="container">
+      <div class="section-tag reveal">What We Stand For</div>
+      <h2 class="section-title reveal">Our Goals</h2>
+      <p class="section-sub reveal">Everything we do is driven by a few core principles.</p>
+      <div class="goals-grid">
+        <div class="goal-card reveal d1"><div class="goal-icon"><i class="fas fa-book-open"></i></div><h3>Learn &amp; Teach</h3><p>Share Islamic knowledge and wisdom to the community</p></div>
+        <div class="goal-card reveal d2"><div class="goal-icon"><i class="fas fa-trophy"></i></div><h3>Compete &amp; Engage</h3><p>Organize friendly competitions and collaborative events.</p></div>
+        <div class="goal-card reveal d3"><div class="goal-icon"><i class="fas fa-seedling"></i></div><h3>Grow Together</h3><p>Build a strong inclusive community across everyone</p></div>
+        <div class="goal-card reveal d1"><div class="goal-icon"><i class="fas fa-handshake"></i></div><h3>Connect</h3><p>Create lifelong meaningful relationships</p></div>
+        <div class="goal-card reveal d2"><div class="goal-icon"><i class="fas fa-lightbulb"></i></div><h3>Innovate</h3><p>Encourage creative thinking and fresh approaches.</p></div>
+        <div class="goal-card reveal d3"><div class="goal-icon"><i class="fas fa-heart"></i></div><h3>Give Back</h3><p>Help the community grow and get closer to Allah.</p></div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- FIX 5: Duplicate id="about" → id="projects"; FIX 6: Broken src="masjid.png".png" → src="masjid.png" -->
+  <section id="projects" class="about-section section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="section-tag reveal">About Us</div>
+          <h2 class="section-title reveal">Projects</h2>
+          <p class="reveal" style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:16px">Our goal is to support and grow a strong, united community through meaningful projects and initiatives that benefit everyone. We rely on your generous donations to make this possible, as your support allows us to organize events, provide valuable programs, and create opportunities that bring people together. Guided by faith and a commitment to service, we strive to make a lasting impact by fostering generosity, strengthening connections, and uplifting those around us while contributing positively to the broader community. Every contribution, no matter the size, helps us continue this mission and expand the good we can do together.</p>
+          <p class="reveal" style="font-size:15px;color:var(--text2);line-height:1.8"><a href="https://www.canva.com/design/DAHCqMr3P-Q/fOZbDBedYWU3vJvIku3oFQ/view?utm_content=DAHCqMr3P-Q&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h0bfc043576">Click here</a></p>
+        </div>
+        <img src="masjid.png" alt="ISPC masjid" width="500">
+      </div>
+    </div>
+  </section>
+ 
+  <!-- FIX 7: Duplicate id="about" → id="sunday-school"; FIX 8: Broken src="School.png".png" → src="School.png" -->
+  <section id="sunday-school" class="about-section section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="section-tag reveal">About Us</div>
+          <h2 class="section-title reveal">Sunday School</h2>
+          <p class="reveal" style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:16px">Our Sunday School is dedicated to nurturing knowledge, character, and faith in a supportive and welcoming environment for students of all ages. Through engaging lessons, interactive activities, and meaningful discussions, we help students build a strong understanding of their beliefs while also developing values such as respect, kindness, and responsibility. Our teachers are committed to guiding each student with care and attention, encouraging both personal growth and a deeper connection to their community. We strive to create a space where learning is enjoyable, friendships are formed, and young hearts are inspired to grow in faith and purpose.</p>
+        </div>
+        <img src="School.png" alt="Sunday school" width="500">
+      </div>
+    </div>
+  </section>
+ 
+  <!-- FIX 9: Duplicate id="faq" for Iqama section → id="iqama" -->
+  <section id="iqama" class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="section-tag reveal">Prayer Times</div>
+      <h2 class="section-title reveal">Iqama Timings</h2>
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Fajr <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">6:30</div></div>
+        <div class="faq-item reveal d1"><button class="faq-q" onclick="toggleFaq(this)">Dhuhr <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">1:30</div></div>
+        <div class="faq-item reveal d2"><button class="faq-q" onclick="toggleFaq(this)">Asr <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">5:45</div></div>
+        <div class="faq-item reveal d3"><button class="faq-q" onclick="toggleFaq(this)">Maghrib <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">7:21</div></div>
+        <div class="faq-item reveal d4"><button class="faq-q" onclick="toggleFaq(this)">Isha <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">9:00</div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Jummah <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">1:30</div></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="events" class="events-section section">
+    <div class="container">
+      <div class="section-tag reveal">Countdown</div>
+      <h2 class="section-title reveal">To Eid</h2>
+      <div class="countdown-box reveal">
+        <div class="cd-unit"><div class="cd-num" id="cdD">0</div><div class="cd-lbl">Days</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cdH">0</div><div class="cd-lbl">Hours</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cdM">0</div><div class="cd-lbl">Mins</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cdS">0</div><div class="cd-lbl">Secs</div></div>
+      </div>
+      <div class="events-grid">
+        <div class="event-card reveal">
+          <div class="event-date-box">
+            <div class="day">20</div>
+            <div class="mon">MAR</div>
+          </div>
+          <div class="event-info">
+            <div class="event-name">Eid Prayer</div>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 8:30 AM</span>
+              <span><i class="fas fa-map-pin"></i> ISPC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="leadership" class="section">
+    <div class="container">
+      <div class="section-tag reveal">The Team</div>
+      <h2 class="section-title reveal">Meet Our Leadership</h2>
+      <div class="leaders-grid">
+        <div class="leader-card reveal d1"><div class="avatar">A</div><div class="name">Arsalan</div><div class="role">Board member</div></div>
+        <div class="leader-card reveal d2"><div class="avatar">K</div><div class="name">Khurrum</div><div class="role">Board member</div></div>
+        <div class="leader-card reveal d3"><div class="avatar">S</div><div class="name">Syed</div><div class="role">Board member</div></div>
+        <div class="leader-card reveal d4"><div class="avatar">A</div><div class="name">Agha</div><div class="role">Board member</div></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="testimonials" class="testimonials-section section">
+    <div class="container">
+      <div class="section-tag reveal">What Members Say</div>
+      <h2 class="section-title reveal">Member Testimonials</h2>
+      <div class="testi-grid">
+        <div class="testi-card reveal d1"><div class="testi-quote">"</div><p class="testi-text">"ISPC brings people together in a meaningful way. From prayers to community events, it's a place where everyone feels welcome and included."</p><div class="testi-author"><div class="testi-av">Z</div><div class="testi-info"><div class="tname">Zain Sadiq</div><div class="tgrade"></div></div></div></div>
+        <div class="testi-card reveal d2"><div class="testi-quote">"</div><p class="testi-text">"What makes ISPC special is the sense of unity. People genuinely support each other, and you can feel that connection at every gathering."</p><div class="testi-author"><div class="testi-av">R</div><div class="testi-info"><div class="tname">Rabeel Sadiq</div><div class="tgrade"></div></div></div></div>
+        <div class="testi-card reveal d3"><div class="testi-quote">"</div><p class="testi-text">"No matter your background or age, ISPC creates an environment where you feel respected and comfortable being part of the community."</p><div class="testi-author"><div class="testi-av">T</div><div class="testi-info"><div class="tname">Tayyab Sadiq</div><div class="tgrade"></div></div></div></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-tag reveal">Memories</div>
+      <h2 class="section-title reveal">Photo Gallery</h2>
+      <p class="section-sub reveal">Highlights from our meetings and events.</p>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal d1"><div class="overlay"><i class="fas fa-expand"></i></div></div>
+        <div class="gallery-item reveal d2"><div class="overlay"><i class="fas fa-expand"></i></div></div>
+        <div class="gallery-item reveal d3"><div class="overlay"><i class="fas fa-expand"></i></div></div>
+        <div class="gallery-item reveal d1"><div class="overlay"><i class="fas fa-expand"></i></div></div>
+        <div class="gallery-item reveal d2"><div class="overlay"><i class="fas fa-expand"></i></div></div>
+        <div class="gallery-item reveal d3"><div class="overlay"><i class="fas fa-expand"></i></div></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="faq" class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="section-tag reveal">Got Questions?</div>
+      <h2 class="section-title reveal">FAQ</h2>
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Who can join? <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">Anyone can join! Regardless of race or background.</div></div>
+        <!-- FIX 10: Stray leading quote in address removed -->
+        <div class="faq-item reveal d1"><button class="faq-q" onclick="toggleFaq(this)">Where is the masjid located? <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">616 Church Street, Roseville, CA 95678</div></div>
+        <div class="faq-item reveal d2"><button class="faq-q" onclick="toggleFaq(this)">Is there a membership fee? <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">No — completely free!</div></div>
+        <div class="faq-item reveal d3"><button class="faq-q" onclick="toggleFaq(this)">How do I sign up? <span class="faq-icon"><i class="fas fa-plus"></i></span></button><div class="faq-a">Click "Join Us" to fill out the form, or come meet us in person.</div></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="newsletter-section section">
+    <div class="container">
+      <div class="reveal" style="max-width:560px;margin:0 auto;text-align:center;">
+        <div class="section-tag">Stay Updated</div>
+        <h2 class="section-title">Get masjid updates by email</h2>
+        <p style="color:var(--text2);font-size:15px;margin-top:8px">Be the first to hear about events, competitions, and news.</p>
+        <div class="nl-form">
+          <input class="nl-input" type="email" placeholder="your@email.com">
+          <button class="btn-nl">Subscribe</button>
+        </div>
+        <p class="nl-note">No spam, ever. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="join" class="join-section section">
+    <div class="container">
+      <div class="join-inner">
+        <div class="section-tag">Ready?</div>
+        <h2 class="section-title reveal">Join us today</h2>
+        <p class="section-sub reveal">Join our community today!</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeWuNJ-FyzqSCI4IxXI29o097OY_CkXHdvUA2C2QNCPmajHpg/viewform" target="_blank">
+          <button class="btn-white reveal">Sign Up Now <i class="fas fa-arrow-right" style="margin-left:8px"></i></button>
+        </a>
+      </div>
+    </div>
+  </section>
+ 
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <!-- FIX 11: "Couty" → "County", "toegether" → "together" -->
+        <div class="footer-brand">Islamic Society of Placer County</div>
+        <p class="footer-desc">Bringing Muslims together</p>
+        <div class="socials">
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+          <a href="mailto:email@school.org" class="social-btn"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#about">About</a></li><li><a href="#goals">Goals</a></li><li><a href="#events">Events</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="mailto:email@school.org">Email Us</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:email@school.org">email@school.org</a></li><li><a href="#">ISPC</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Islamic Society of Placer County. All rights reserved.</span>
+      <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </footer>
+ 
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+ 
+  <script>
+    // Particles
+    const pc=document.getElementById('particles'),cols=['#2e565e','#adbbbe','#738589'],pts=[];
+    for(let i=0;i<80;i++){const el=document.createElement('div'),s=Math.random()*5+2;Object.assign(el.style,{position:'absolute',borderRadius:'50%',width:s+'px',height:s+'px',background:cols[Math.floor(Math.random()*cols.length)],opacity:Math.random()*.5+.15,pointerEvents:'none'});pc.appendChild(el);pts.push({el,x:Math.random()*100,y:Math.random()*100,speed:Math.random()*1.5+.4,dir:Math.random()*360});}
+    function animPts(){pts.forEach(p=>{let nx=p.x+Math.cos(p.dir*Math.PI/180)*p.speed*.08,ny=p.y+Math.sin(p.dir*Math.PI/180)*p.speed*.08;if(nx<=0||nx>=100){p.dir=180-p.dir;nx=Math.max(0,Math.min(100,nx));}if(ny<=0||ny>=100){p.dir=-p.dir;ny=Math.max(0,Math.min(100,ny));}p.x=nx;p.y=ny;p.el.style.left=p.x+'%';p.el.style.top=p.y+'%';});requestAnimationFrame(animPts);}
+    animPts();
+ 
+    // Typing animation
+    const L1='Welcome to',L2='ISPC';let i1=0,i2=0;
+    const e1=document.getElementById('heroLine1'),e2=document.getElementById('heroLine2');
+    function typeL1(){if(i1<L1.length){e1.textContent+=L1[i1++];setTimeout(typeL1,65);}else setTimeout(typeL2,220);}
+    function typeL2(){if(i2<L2.length){e2.textContent+=L2[i2++];setTimeout(typeL2,85);}else{e2.classList.remove('typing');e2.classList.add('done');}}
+    setTimeout(typeL1,500);
+ 
+    // Dark mode
+    const darkBtn=document.getElementById('darkBtn');
+    function toggleDark(){const h=document.documentElement,d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');darkBtn.innerHTML=d?'<i class="fas fa-moon"></i>':'<i class="fas fa-sun"></i>';localStorage.setItem('theme',d?'light':'dark');}
+    const saved=localStorage.getItem('theme');
+    if(saved==='dark'){document.documentElement.setAttribute('data-theme','dark');darkBtn.innerHTML='<i class="fas fa-sun"></i>';}
+ 
+    // Scroll reveal
+    const revEls=document.querySelectorAll('.reveal');
+    const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.15});
+    revEls.forEach(el=>revObs.observe(el));
+ 
+    // Mobile nav
+    const mNav=document.getElementById('mobileNav'),hbg=document.getElementById('hamburger');
+    function toggleNav(){mNav.classList.toggle('open');hbg.classList.toggle('open');}
+    function closeNav(){mNav.classList.remove('open');hbg.classList.remove('open');}
+    window.addEventListener('scroll',()=>{if(mNav.classList.contains('open'))closeNav();});
+ 
+    // Sidebar
+    const sb=document.getElementById('sidebar'),sbo=document.getElementById('sbOverlay');
+    function toggleSb(){sb.classList.toggle('open');sbo.classList.toggle('show');}
+    function closeSb(){sb.classList.remove('open');sbo.classList.remove('show');}
+ 
+    // FIX 12: Countdown — single, correct implementation targeting Eid Prayer (Mar 20, 2026 8:30 AM)
+    // Removed the broken inline duplicate; fixed the invalid date string
+    const eventDate = new Date('March 20, 2026 08:30:00');
+    function updateCD(){
+      const diff = eventDate - new Date();
+      if(diff <= 0){
+        document.getElementById('cdD').textContent='0';
+        document.getElementById('cdH').textContent='0';
+        document.getElementById('cdM').textContent='0';
+        document.getElementById('cdS').textContent='0';
+        return;
+      }
+      document.getElementById('cdD').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+      document.getElementById('cdH').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+      document.getElementById('cdM').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+      document.getElementById('cdS').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    }
+    updateCD();
+    setInterval(updateCD,1000);
+ 
+    // FAQ accordion
+    function toggleFaq(btn){const item=btn.closest('.faq-item'),isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(el=>el.classList.remove('open'));if(!isOpen)item.classList.add('open');}
+ 
+    // Progress bar & back to top
+    const pb=document.getElementById('progress-bar');
+    window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';document.getElementById('back-top').classList.toggle('show',window.scrollY>400);});
+ 
+    // Newsletter
+    document.querySelector('.btn-nl').addEventListener('click',function(){const inp=document.querySelector('.nl-input');if(inp.value.includes('@')){inp.value='';this.textContent='Subscribed!';setTimeout(()=>this.textContent='Subscribe',3000);}else{inp.style.borderColor='#ef4444';setTimeout(()=>inp.style.borderColor='',2000);}});
+  </script>
+</body>
+</html>
